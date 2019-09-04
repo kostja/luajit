@@ -950,7 +950,7 @@ static void LJ_FASTCALL recff_string_find(jit_State *J, RecordFFData *rd)
       TRef pos;
       emitir(IRTG(IR_NE, IRT_PGC), tr, trp0);
       /* Caveat: can't use STRREF trstr 0 here because that might be pointing into a wrong string due to folding. */
-      pos = emitir(IRTI(IR_SUB), tr, trsptr);
+      pos = emitir(IRTI(IR_SUB), tr, trstr);
       J->base[0] = emitir(IRTI(IR_ADD), pos, emitir(IRTI(IR_ADD), trstart, lj_ir_kint(J, 1)));
       J->base[1] = emitir(IRTI(IR_ADD), pos, trplen);
       rd->nres = 2;
